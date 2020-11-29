@@ -1,12 +1,11 @@
 package hu.bme.aut.andwallet
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.utils.ColorTemplate
 import hu.bme.aut.andwallet.data.ApplicationDatabase
 import hu.bme.aut.andwallet.data.Transaction
 import kotlinx.android.synthetic.main.activity_monthly_summary.*
@@ -48,6 +47,8 @@ class MonthlySummaryActivity : AppCompatActivity() {
         chartSummary.data = data
         chartSummary.isRotationEnabled = false
         chartSummary.description.text = "Summary of incomes and expenses"
+        chartSummary.setEntryLabelColor(Color.BLACK)
+        chartSummary.setEntryLabelTextSize(16f)
         chartSummary.invalidate()
     }
 }
