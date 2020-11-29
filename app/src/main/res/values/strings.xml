@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">AndWallet</string>
+    <string name="please_enter_pin">Please enter PIN!</string>
+    <string name="enter">Enter</string>
+    <string name="pin_set">Set</string>
+    <string name="pin">PIN</string>
+    <string name="show">Show</string>
+    <string name="hide">Hide</string>
+    <string name="delete_item">Delete item</string>
+    <string name="edit_item">Edit item</string>
+    <string name="remove_all">Remove All</string>
+    <string name="are_you_sure_want_to_remove_all_items">Are You sure want to remove all items?</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="name">Name</string>
+    <string name="amount">Amount</string>
+    <string name="date">Date</string>
+    <string name="parameter_amount">%1$d Ft</string>
+    <string name="view_savings">View Savings</string>
+    <string name="monthly_summary">Monthly Summary</string>
+    <string name="oops_looks_like_you_don_t_have_anything_to_save_for_add_something">"Oops! Looks like You don\'t have anything to save for. Add something!"</string>
+    <string name="price">Price</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="summary_of_income_and_expenses">Summary of income and expenses</string>
+</resources>
