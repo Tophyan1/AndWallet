@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity(),
 
     private lateinit var adapter: TransactionAdapter
     private lateinit var database: ApplicationDatabase
-    var editIndex = -1
+    private var editIndex = -1
     companion object {
         const val KEY_EDIT = "KEY_EDIT"
     }

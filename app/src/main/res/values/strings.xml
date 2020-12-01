@@ -2,7 +2,6 @@
     <string name="app_name">AndWallet</string>
     <string name="please_enter_pin">Please enter PIN!</string>
     <string name="enter">Enter</string>
-    <string name="pin_set">Set</string>
     <string name="pin">PIN</string>
     <string name="show">Show</string>
     <string name="hide">Hide</string>
@@ -15,12 +14,12 @@
     <string name="name">Name</string>
     <string name="amount">Amount</string>
     <string name="date">Date</string>
-    <string name="parameter_amount">%1$d Ft</string>
     <string name="view_savings">View Savings</string>
     <string name="monthly_summary">Monthly Summary</string>
     <string name="price">Price</string>
     <string name="plus">+</string>
     <string name="minus">-</string>
-    <string name="summary_of_income_and_expenses">Summary of income and expenses</string>
     <string name="balance_amount">Balance: %1$d</string>
+    <string name="balance_placeholder">Balance</string>
+    <string name="name_placeholder">Name</string>
 </resources>

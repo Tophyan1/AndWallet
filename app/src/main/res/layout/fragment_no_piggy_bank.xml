@@ -21,7 +21,6 @@
 
     <!-- String can't be extracted into resource, because it uses \n. Couldn't find a solution for that -->
     <TextView
-        android:id="@+id/noPiggyBankTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"

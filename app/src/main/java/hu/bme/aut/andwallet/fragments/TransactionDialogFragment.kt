@@ -25,7 +25,7 @@ class TransactionDialogFragment : DialogFragment() {
     }
 
     private lateinit var listener: TransactionDialogListener
-    private var EDIT_MODE = false
+    private var editMode = false
     private lateinit var nameEditText: EditText
     private lateinit var amountEditText: EditText
     private lateinit var datePicker: DatePicker
@@ -38,8 +38,8 @@ class TransactionDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         if (arguments?.containsKey(MainActivity.KEY_EDIT) == true)
-            EDIT_MODE = true
-        val dialogTitle = when(EDIT_MODE) {
+            editMode = true
+        val dialogTitle = when (editMode) {
             false -> "New Transaction"
             true -> "Edit Transaction"
         }
@@ -48,16 +48,18 @@ class TransactionDialogFragment : DialogFragment() {
             .setView(getContentView())
             .setNegativeButton(R.string.cancel, null)
 
-        if (EDIT_MODE) {
+        if (editMode) {
             val item = arguments!!.getSerializable(MainActivity.KEY_EDIT) as Transaction
 
             nameEditText.setText(item.name)
             amountEditText.setText(item.amount.toString())
             val c = GregorianCalendar()
             c.time = item.date
-            datePicker.updateDate(c.get(Calendar.YEAR),
-                                  c.get(Calendar.MONTH),
-                                 c.get(Calendar.DAY_OF_MONTH))
+            datePicker.updateDate(
+                c.get(Calendar.YEAR),
+                c.get(Calendar.MONTH),
+                c.get(Calendar.DAY_OF_MONTH)
+            )
 
             builder.setPositiveButton(R.string.ok) { _, _ ->
                 if (isValid())
