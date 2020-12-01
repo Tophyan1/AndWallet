@@ -30,20 +30,21 @@ class PiggyBankActivity : AppCompatActivity(),
         }
     }
 
-    private fun initFragment() {
-        if (piggyBank == null) {
-            val fragment = NoPiggyBankFragment()
+    private fun initFragment() =
+        if (piggyBank == null) addPiggyBankFragment() else addNoPiggyBankFragment()
 
-            val ft = supportFragmentManager.beginTransaction()
-            ft.add(R.id.frame, fragment, NoPiggyBankFragment.TAG)
-            ft.commit()
-        } else {
-            val fragment = PiggyBankFragment(piggyBank!!)
+    private fun addNoPiggyBankFragment() {
+        val fragment = PiggyBankFragment(piggyBank!!)
+        val ft = supportFragmentManager.beginTransaction()
+        ft.add(R.id.frame, fragment, PiggyBankFragment.TAG)
+        ft.commit()
+    }
 
-            val ft = supportFragmentManager.beginTransaction()
-            ft.add(R.id.frame, fragment, PiggyBankFragment.TAG)
-            ft.commit()
-        }
+    private fun addPiggyBankFragment() {
+        val fragment = NoPiggyBankFragment()
+        val ft = supportFragmentManager.beginTransaction()
+        ft.add(R.id.frame, fragment, NoPiggyBankFragment.TAG)
+        ft.commit()
     }
 
     override fun onPiggyBankCreated(piggyBank: PiggyBank) {
