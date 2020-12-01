@@ -40,36 +40,41 @@ class TransactionDialogFragment : DialogFragment() {
         val builder = AlertDialog.Builder(requireContext())
             .setView(getContentView())
             .setNegativeButton(R.string.cancel, null)
-
         when (isEditMode()) {
-            true -> {
-                val item = arguments!!.getSerializable(MainActivity.KEY_EDIT) as Transaction
-
-                nameEditText.setText(item.name)
-                amountEditText.setText(item.amount.toString())
-                val c = GregorianCalendar()
-                c.time = item.date
-                datePicker.updateDate(
-                    c.get(Calendar.YEAR),
-                    c.get(Calendar.MONTH),
-                    c.get(Calendar.DAY_OF_MONTH)
-                )
-                builder.setTitle(getString(R.string.edit_transaction))
-                    .setPositiveButton(R.string.ok) { _, _ ->
-                        if (isValid())
-                            listener.onTransactionUpdated(getTransaction(item.id))
-                    }
-            }
-            false -> {
-                builder.setTitle(getString(R.string.new_transaction))
-                    .setPositiveButton(R.string.ok) { _, _ ->
-                        if (isValid())
-                            listener.onTransactionCreated(getTransaction())
-                    }
-            }
+            true -> setUpEditSpecificAttributes(builder)
+            false -> setUpCreateSpecificAttributes(builder)
         }
-
         return builder.create()
+    }
+
+    private fun setUpEditSpecificAttributes(builder: AlertDialog.Builder) {
+        val item = arguments!!.getSerializable(MainActivity.KEY_EDIT) as Transaction
+        initializeTextFieldsAccordingTo(item)
+        builder.setTitle(getString(R.string.edit_transaction))
+            .setPositiveButton(R.string.ok) { _, _ ->
+                if (isValid())
+                    listener.onTransactionUpdated(getTransaction(item.id))
+            }
+    }
+
+    private fun initializeTextFieldsAccordingTo(item: Transaction) {
+        nameEditText.setText(item.name)
+        amountEditText.setText(item.amount.toString())
+        val calendar = GregorianCalendar()
+        calendar.time = item.date
+        datePicker.updateDate(
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+    }
+
+    private fun setUpCreateSpecificAttributes(builder: AlertDialog.Builder) {
+        builder.setTitle(getString(R.string.new_transaction))
+            .setPositiveButton(R.string.ok) { _, _ ->
+                if (isValid())
+                    listener.onTransactionCreated(getTransaction())
+            }
     }
 
     private fun isEditMode() = arguments?.containsKey(MainActivity.KEY_EDIT) == true
