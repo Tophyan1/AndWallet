@@ -39,28 +39,28 @@ class ChangeSavingsDialogFragment : DialogFragment() {
             ADD_TAG -> {
                 builder.setTitle(getString(R.string.add_amount))
                     .setPositiveButton(R.string.ok) { _, _ ->
-                        val amount = try {
-                            amountEditText.text.toString().toInt()
-                        } catch (e: NumberFormatException) {
-                            0
-                        }
+                        val amount = getAmountFromEditText()
                         listener.addSum(amount)
                     }
             }
             SUBTRACT_TAG -> {
                 builder.setTitle(getString(R.string.subtract_amount))
                     .setPositiveButton(R.string.ok) { _, _ ->
-                        val amount = try {
-                            amountEditText.text.toString().toInt()
-                        } catch (e: NumberFormatException) {
-                            0
-                        }
+                        val amount = getAmountFromEditText()
                         listener.subtractSum(amount)
                     }
             }
-            else -> { builder.setTitle("Oops! Try again!") }
+            else -> {
+                builder.setTitle("Oops! Try again!")
+            }
         }
         return builder.create()
+    }
+
+    private fun getAmountFromEditText() = try {
+        amountEditText.text.toString().toInt()
+    } catch (e: NumberFormatException) {
+        0
     }
 
     private fun getContentView(): View {
