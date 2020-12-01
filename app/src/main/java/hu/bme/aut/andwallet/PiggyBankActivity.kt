@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import hu.bme.aut.andwallet.data.ApplicationDatabase
 import hu.bme.aut.andwallet.data.PiggyBank
+import hu.bme.aut.andwallet.data.Wallet
 import hu.bme.aut.andwallet.fragments.ChangeSavingsDialogFragment
 import hu.bme.aut.andwallet.fragments.NewPiggyBankDialogFragment
 import hu.bme.aut.andwallet.fragments.NoPiggyBankFragment
@@ -60,6 +61,7 @@ class PiggyBankActivity : AppCompatActivity(),
     }
 
     override fun addSum(amount: Int) {
+        Wallet.remove(amount)
         var newProgress = piggyBank!!.progress + amount
         if (newProgress > piggyBank!!.fullPrice)
             newProgress = piggyBank!!.fullPrice
@@ -72,6 +74,7 @@ class PiggyBankActivity : AppCompatActivity(),
     }
 
     override fun subtractSum(amount: Int) {
+        Wallet.add(amount)
         var newProgress = piggyBank!!.progress - amount
         if (newProgress < 0)
             newProgress = 0
