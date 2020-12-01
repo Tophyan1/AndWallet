@@ -37,18 +37,24 @@ class ChangeSavingsDialogFragment : DialogFragment() {
 
         when (tag) {
             ADD_TAG -> {
-                builder.setTitle("Add Amount")
+                builder.setTitle(getString(R.string.add_amount))
                     .setPositiveButton(R.string.ok) { _, _ ->
-                        val amount = try { amountEditText.text.toString().toInt() }
-                        catch (e: NumberFormatException) { 0 }
+                        val amount = try {
+                            amountEditText.text.toString().toInt()
+                        } catch (e: NumberFormatException) {
+                            0
+                        }
                         listener.addSum(amount)
                     }
             }
             SUBTRACT_TAG -> {
-                builder.setTitle("Subtract Amount")
+                builder.setTitle(getString(R.string.subtract_amount))
                     .setPositiveButton(R.string.ok) { _, _ ->
-                        val amount = try { amountEditText.text.toString().toInt() }
-                        catch (e: NumberFormatException) { 0 }
+                        val amount = try {
+                            amountEditText.text.toString().toInt()
+                        } catch (e: NumberFormatException) {
+                            0
+                        }
                         listener.subtractSum(amount)
                     }
             }

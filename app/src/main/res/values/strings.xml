@@ -24,4 +24,6 @@
     <string name="name_placeholder">Name</string>
     <string name="edit_transaction">Edit Transaction</string>
     <string name="new_transaction">New Transaction</string>
+    <string name="add_amount">Add Amount</string>
+    <string name="subtract_amount">Subtract Amount</string>
 </resources>
