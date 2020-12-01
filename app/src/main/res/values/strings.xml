@@ -22,4 +22,6 @@
     <string name="balance_amount">Balance: %1$d</string>
     <string name="balance_placeholder">Balance</string>
     <string name="name_placeholder">Name</string>
+    <string name="edit_transaction">Edit Transaction</string>
+    <string name="new_transaction">New Transaction</string>
 </resources>

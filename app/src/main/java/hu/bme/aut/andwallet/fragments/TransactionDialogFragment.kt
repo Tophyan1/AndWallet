@@ -54,15 +54,14 @@ class TransactionDialogFragment : DialogFragment() {
                     c.get(Calendar.MONTH),
                     c.get(Calendar.DAY_OF_MONTH)
                 )
-                builder.setTitle("Edit Transaction")
+                builder.setTitle(getString(R.string.edit_transaction))
                     .setPositiveButton(R.string.ok) { _, _ ->
                         if (isValid())
                             listener.onTransactionUpdated(getTransaction(item.id))
-
                     }
             }
             false -> {
-                builder.setTitle("New Transaction")
+                builder.setTitle(getString(R.string.new_transaction))
                     .setPositiveButton(R.string.ok) { _, _ ->
                         if (isValid())
                             listener.onTransactionCreated(getTransaction())
