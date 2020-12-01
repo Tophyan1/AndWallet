@@ -26,7 +26,7 @@ class NewPiggyBankDialogFragment(private val listener: PiggyBankDialogListener) 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
         val builder = AlertDialog.Builder(requireContext())
-            .setTitle("New Item to Save for")
+            .setTitle(getString(R.string.new_item_to_save_for))
             .setView(getContentView())
             .setNegativeButton(R.string.cancel, null)
             .setPositiveButton(R.string.ok) { _, _ ->

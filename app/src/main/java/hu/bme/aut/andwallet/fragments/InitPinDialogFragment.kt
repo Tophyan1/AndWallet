@@ -18,7 +18,7 @@ class InitPinDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
         val dialog = AlertDialog.Builder(requireContext())
-            .setTitle("Please set your PIN")
+            .setTitle(getString(R.string.please_set_your_pin))
             .setView(getContentView())
             .setPositiveButton("SET") { _, _ ->
 

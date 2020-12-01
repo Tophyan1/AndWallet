@@ -19,7 +19,8 @@ class PinActivity : AppCompatActivity() {
             if (pinText.text.toString().toInt() == pin)
                 startActivity(Intent(this, MainActivity::class.java))
             else
-                Snackbar.make(enterButton, "Wrong PIN!", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(enterButton, getString(R.string.wrong_pin), Snackbar.LENGTH_LONG)
+                    .show()
         }
     }
 

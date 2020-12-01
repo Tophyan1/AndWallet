@@ -36,8 +36,8 @@ class MonthlySummaryActivity : AppCompatActivity() {
         }
 
         val dataEntries = listOf(
-            PieEntry(income.toFloat(), "Income"),
-            PieEntry(expense.toFloat(), "Expenses")
+            PieEntry(income.toFloat(), getString(R.string.income)),
+            PieEntry(expense.toFloat(), getString(R.string.expenses))
         )
 
         val dataSet = PieDataSet(dataEntries, "")
@@ -46,7 +46,7 @@ class MonthlySummaryActivity : AppCompatActivity() {
         val data = PieData(dataSet)
         chartSummary.data = data
         chartSummary.isRotationEnabled = false
-        chartSummary.description.text = "Summary of incomes and expenses"
+        chartSummary.description.text = getString(R.string.summary_of_incomes_and_expenses)
         chartSummary.setEntryLabelColor(Color.BLACK)
         chartSummary.setEntryLabelTextSize(16f)
         chartSummary.invalidate()
