@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(),
         fab.setOnClickListener {
             TransactionDialogFragment().show(
                 supportFragmentManager,
-                TransactionDialogFragment.TAG
+                TransactionDialogFragment.NEW_TAG
             )
         }
         database = ApplicationDatabase.getInstance(this)
@@ -134,7 +134,7 @@ class MainActivity : AppCompatActivity(),
         val  bundle = Bundle()
         bundle.putSerializable(KEY_EDIT, item)
         editDialog.arguments = bundle
-        editDialog.show(supportFragmentManager, "TransactionDialogFragment_edit")
+        editDialog.show(supportFragmentManager, TransactionDialogFragment.EDIT_TAG)
     }
 
     override fun onTransactionCreated(newItem: Transaction) {

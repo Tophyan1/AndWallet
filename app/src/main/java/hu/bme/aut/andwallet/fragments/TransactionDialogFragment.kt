@@ -21,11 +21,11 @@ class TransactionDialogFragment : DialogFragment() {
     }
 
     companion object {
-        const val TAG = "TransactionDialogFragment"
+        const val NEW_TAG = "TransactionDialogFragment_new"
+        const val EDIT_TAG = "TransactionDialogFragment_edit"
     }
 
     private lateinit var listener: TransactionDialogListener
-    private var editMode = false
     private lateinit var nameEditText: EditText
     private lateinit var amountEditText: EditText
     private lateinit var datePicker: DatePicker
@@ -37,46 +37,45 @@ class TransactionDialogFragment : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        if (arguments?.containsKey(MainActivity.KEY_EDIT) == true)
-            editMode = true
-        val dialogTitle = when (editMode) {
-            false -> "New Transaction"
-            true -> "Edit Transaction"
-        }
         val builder = AlertDialog.Builder(requireContext())
-            .setTitle(dialogTitle)
             .setView(getContentView())
             .setNegativeButton(R.string.cancel, null)
 
-        if (editMode) {
-            val item = arguments!!.getSerializable(MainActivity.KEY_EDIT) as Transaction
+        when (isEditMode()) {
+            true -> {
+                val item = arguments!!.getSerializable(MainActivity.KEY_EDIT) as Transaction
 
-            nameEditText.setText(item.name)
-            amountEditText.setText(item.amount.toString())
-            val c = GregorianCalendar()
-            c.time = item.date
-            datePicker.updateDate(
-                c.get(Calendar.YEAR),
-                c.get(Calendar.MONTH),
-                c.get(Calendar.DAY_OF_MONTH)
-            )
+                nameEditText.setText(item.name)
+                amountEditText.setText(item.amount.toString())
+                val c = GregorianCalendar()
+                c.time = item.date
+                datePicker.updateDate(
+                    c.get(Calendar.YEAR),
+                    c.get(Calendar.MONTH),
+                    c.get(Calendar.DAY_OF_MONTH)
+                )
+                builder.setTitle("Edit Transaction")
+                    .setPositiveButton(R.string.ok) { _, _ ->
+                        if (isValid())
+                            listener.onTransactionUpdated(getTransaction(item.id))
 
-            builder.setPositiveButton(R.string.ok) { _, _ ->
-                if (isValid())
-                    listener.onTransactionUpdated(getTransaction(item.id))
+                    }
             }
-        }
-        else {
-            builder.setPositiveButton(R.string.ok) { _, _ ->
-                if (isValid())
-                    listener.onTransactionCreated(getTransaction())
+            false -> {
+                builder.setTitle("New Transaction")
+                    .setPositiveButton(R.string.ok) { _, _ ->
+                        if (isValid())
+                            listener.onTransactionCreated(getTransaction())
+                    }
             }
         }
 
         return builder.create()
     }
 
-    private fun getTransaction(id : Long? = null) = Transaction(
+    private fun isEditMode() = arguments?.containsKey(MainActivity.KEY_EDIT) == true
+
+    private fun getTransaction(id: Long? = null) = Transaction(
         id = id,
         name = nameEditText.text.toString(),
         amount = try {
