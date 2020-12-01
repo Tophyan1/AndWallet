@@ -36,25 +36,27 @@ class ChangeSavingsDialogFragment : DialogFragment() {
             .setNegativeButton(R.string.cancel, null)
 
         when (tag) {
-            ADD_TAG -> {
-                builder.setTitle(getString(R.string.add_amount))
-                    .setPositiveButton(R.string.ok) { _, _ ->
-                        val amount = getAmountFromEditText()
-                        listener.addSum(amount)
-                    }
-            }
-            SUBTRACT_TAG -> {
-                builder.setTitle(getString(R.string.subtract_amount))
-                    .setPositiveButton(R.string.ok) { _, _ ->
-                        val amount = getAmountFromEditText()
-                        listener.subtractSum(amount)
-                    }
-            }
-            else -> {
-                builder.setTitle("Oops! Try again!")
-            }
+            ADD_TAG -> setDialogAddOption(builder)
+            SUBTRACT_TAG -> setDialogSubtractOption(builder)
+            else -> builder.setTitle(getString(R.string.oops_try_again))
         }
         return builder.create()
+    }
+
+    private fun setDialogAddOption(builder: AlertDialog.Builder) {
+        builder.setTitle(getString(R.string.add_amount))
+            .setPositiveButton(R.string.ok) { _, _ ->
+                val amount = getAmountFromEditText()
+                listener.addSum(amount)
+            }
+    }
+
+    private fun setDialogSubtractOption(builder: AlertDialog.Builder) {
+        builder.setTitle(getString(R.string.subtract_amount))
+            .setPositiveButton(R.string.ok) { _, _ ->
+                val amount = getAmountFromEditText()
+                listener.subtractSum(amount)
+            }
     }
 
     private fun getAmountFromEditText() = try {

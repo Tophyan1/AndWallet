@@ -26,4 +26,5 @@
     <string name="new_transaction">New Transaction</string>
     <string name="add_amount">Add Amount</string>
     <string name="subtract_amount">Subtract Amount</string>
+    <string name="oops_try_again">Oops! Try again!</string>
 </resources>
