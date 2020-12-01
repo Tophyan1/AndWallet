@@ -18,9 +18,9 @@
     <string name="parameter_amount">%1$d Ft</string>
     <string name="view_savings">View Savings</string>
     <string name="monthly_summary">Monthly Summary</string>
-    <string name="oops_looks_like_you_don_t_have_anything_to_save_for_add_something">"Oops! Looks like You don\'t have anything to save for. Add something!"</string>
     <string name="price">Price</string>
     <string name="plus">+</string>
     <string name="minus">-</string>
     <string name="summary_of_income_and_expenses">Summary of income and expenses</string>
+    <string name="balance_amount">Balance: %1$d</string>
 </resources>

@@ -1,8 +1,5 @@
 package hu.bme.aut.andwallet.data
 
-import android.content.Context
-import kotlin.concurrent.thread
-
 object Wallet {
     var balance = 0
 

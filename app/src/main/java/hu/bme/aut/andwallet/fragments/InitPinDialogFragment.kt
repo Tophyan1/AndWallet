@@ -7,14 +7,12 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import hu.bme.aut.andwallet.R
-import kotlinx.android.synthetic.main.dialog_set_pin.*
 
 class InitPinDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -36,9 +34,9 @@ class InitPinDialogFragment : DialogFragment() {
         return dialog.create()
     }
 
-    lateinit var pinText: TextView
-    lateinit var pinEditText: EditText
-    lateinit var toggleButton: ToggleButton
+    private lateinit var pinText: TextView
+    private lateinit var pinEditText: EditText
+    private lateinit var toggleButton: ToggleButton
 
 
     private fun getContentView(): View {

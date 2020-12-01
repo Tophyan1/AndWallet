@@ -10,8 +10,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.andwallet.R
 import hu.bme.aut.andwallet.data.Transaction
-import kotlinx.android.synthetic.main.item_transaction.view.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 class TransactionAdapter(private val listener: TransactionClickListener) :

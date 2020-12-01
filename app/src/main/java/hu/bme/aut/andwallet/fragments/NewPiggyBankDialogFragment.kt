@@ -2,7 +2,6 @@ package hu.bme.aut.andwallet.fragments
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import android.widget.EditText
 import androidx.fragment.app.DialogFragment
 import hu.bme.aut.andwallet.R
 import hu.bme.aut.andwallet.data.PiggyBank
-import kotlinx.android.synthetic.main.dialog_new_piggy_bank.*
 
 class NewPiggyBankDialogFragment(private val listener: PiggyBankDialogListener) : DialogFragment() {
 
@@ -22,8 +20,8 @@ class NewPiggyBankDialogFragment(private val listener: PiggyBankDialogListener) 
         const val TAG = "NewPiggyBankDialogFragment"
     }
 
-    lateinit var nameEditText: EditText
-    lateinit var priceEditText: EditText
+    private lateinit var nameEditText: EditText
+    private lateinit var priceEditText: EditText
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
@@ -33,12 +31,14 @@ class NewPiggyBankDialogFragment(private val listener: PiggyBankDialogListener) 
             .setNegativeButton(R.string.cancel, null)
             .setPositiveButton(R.string.ok) { _, _ ->
                 if (isValid())
-                    listener.onPiggyBankCreated(PiggyBank(
-                        id = null,
-                        name= nameEditText.text.toString(),
-                        fullPrice = priceEditText.text.toString().toInt(),
-                        progress = 0
-                    ))
+                    listener.onPiggyBankCreated(
+                        PiggyBank(
+                            id = null,
+                            name = nameEditText.text.toString(),
+                            fullPrice = priceEditText.text.toString().toInt(),
+                            progress = 0
+                        )
+                    )
             }
 
         return builder.create()

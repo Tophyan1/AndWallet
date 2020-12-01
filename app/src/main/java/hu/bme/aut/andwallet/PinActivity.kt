@@ -2,10 +2,8 @@ package hu.bme.aut.andwallet
 
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import hu.bme.aut.andwallet.fragments.InitPinDialogFragment
 import kotlinx.android.synthetic.main.activity_pin.*

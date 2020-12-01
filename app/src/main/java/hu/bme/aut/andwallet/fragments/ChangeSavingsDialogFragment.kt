@@ -8,10 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import androidx.fragment.app.DialogFragment
-import hu.bme.aut.andwallet.PiggyBankActivity
 import hu.bme.aut.andwallet.R
-import java.lang.NumberFormatException
-import java.lang.RuntimeException
 
 class ChangeSavingsDialogFragment : DialogFragment() {
     interface ChangeSavingsDialogListener {
@@ -24,8 +21,8 @@ class ChangeSavingsDialogFragment : DialogFragment() {
         const val SUBTRACT_TAG = "ChangeSavingsDialogFragment_subtract"
     }
 
-    lateinit var listener: ChangeSavingsDialogListener
-    lateinit var amountEditText: EditText
+    private lateinit var listener: ChangeSavingsDialogListener
+    private lateinit var amountEditText: EditText
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

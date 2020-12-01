@@ -1,14 +1,13 @@
 package hu.bme.aut.andwallet
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import hu.bme.aut.andwallet.data.ApplicationDatabase
 import hu.bme.aut.andwallet.data.PiggyBank
 import hu.bme.aut.andwallet.fragments.ChangeSavingsDialogFragment
 import hu.bme.aut.andwallet.fragments.NewPiggyBankDialogFragment
 import hu.bme.aut.andwallet.fragments.NoPiggyBankFragment
 import hu.bme.aut.andwallet.fragments.PiggyBankFragment
-import kotlinx.android.synthetic.main.activity_piggy_bank.*
 import kotlin.concurrent.thread
 
 class PiggyBankActivity : AppCompatActivity(),
@@ -41,7 +40,7 @@ class PiggyBankActivity : AppCompatActivity(),
             val fragment = PiggyBankFragment(piggyBank!!)
 
             val ft = supportFragmentManager.beginTransaction()
-            ft.add(R.id.frame, fragment, NoPiggyBankFragment.TAG)
+            ft.add(R.id.frame, fragment, PiggyBankFragment.TAG)
             ft.commit()
         }
     }

@@ -1,16 +1,16 @@
 package hu.bme.aut.andwallet
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.andwallet.adapter.TransactionAdapter
-import hu.bme.aut.andwallet.data.Transaction
 import hu.bme.aut.andwallet.data.ApplicationDatabase
+import hu.bme.aut.andwallet.data.Transaction
 import hu.bme.aut.andwallet.data.Wallet
 import hu.bme.aut.andwallet.fragments.TransactionDialogFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,12 +20,11 @@ import kotlin.concurrent.thread
 class MainActivity : AppCompatActivity(),
                      TransactionAdapter.TransactionClickListener,
                      TransactionDialogFragment.TransactionDialogListener {
-
     private lateinit var recyclerView: RecyclerView
+
     private lateinit var adapter: TransactionAdapter
     private lateinit var database: ApplicationDatabase
-    var editindex = -1
-
+    var editIndex = -1
     companion object {
         const val KEY_EDIT = "KEY_EDIT"
     }
@@ -51,8 +50,13 @@ class MainActivity : AppCompatActivity(),
         initRecyclerView()
     }
 
+    override fun onResume() {
+        super.onResume()
+        updateBalanceTextView()
+    }
+
     private fun updateBalanceTextView() {
-        balanceTextView.text = "Balance: ${Wallet.balance}"
+        balanceTextView.text = getString(R.string.balance_amount, Wallet.balance)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -124,13 +128,13 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun showEditDialog(item: Transaction, position: Int) {
-        editindex = position
+        editIndex = position
         val editDialog = TransactionDialogFragment()
 
         val  bundle = Bundle()
         bundle.putSerializable(KEY_EDIT, item)
         editDialog.arguments = bundle
-        editDialog.show(supportFragmentManager, "EDITDIALOG")
+        editDialog.show(supportFragmentManager, "TransactionDialogFragment_edit")
     }
 
     override fun onTransactionCreated(newItem: Transaction) {
@@ -152,7 +156,7 @@ class MainActivity : AppCompatActivity(),
             database.applicationDao().update(item)
             Wallet.init(transactions = adapter.getAll())
             runOnUiThread {
-                adapter.updateItem(item, editindex)
+                adapter.updateItem(item, editIndex)
                 updateBalanceTextView()
             }
         }

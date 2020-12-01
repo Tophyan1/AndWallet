@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndWallet">
-        <activity android:name=".MonthlySummaryActivity"></activity>
+        <activity android:name=".MonthlySummaryActivity" />
         <activity android:name=".PiggyBankActivity" />
         <activity android:name=".MainActivity" />
         <activity
