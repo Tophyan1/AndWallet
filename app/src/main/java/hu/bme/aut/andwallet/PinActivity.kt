@@ -12,10 +12,10 @@ class PinActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pin)
-        pref = getSharedPreferences("app", MODE_PRIVATE)
+        pref = getSharedPreferences(AppConstants.PREFERENCE, MODE_PRIVATE)
 
         enterButton.setOnClickListener {
-            val pin = pref.getInt("PIN", -1)
+            val pin = pref.getInt(AppConstants.PIN_PREF, -1)
             if (pinText.text.toString().toInt() == pin)
                 startActivity(Intent(this, MainActivity::class.java))
             else
@@ -28,9 +28,9 @@ class PinActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (pref.getBoolean("firstLaunch", true)) {
+        if (pref.getBoolean(AppConstants.FIRST_LAUNCH_PREF, true)) {
             InitPinDialogFragment().show(supportFragmentManager, InitPinDialogFragment.TAG)
-            pref.edit().putBoolean("firstLaunch", false).apply()
+            pref.edit().putBoolean(AppConstants.FIRST_LAUNCH_PREF, false).apply()
         }
     }
 }
