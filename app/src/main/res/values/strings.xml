@@ -33,4 +33,9 @@
     <string name="expenses">Expenses</string>
     <string name="summary_of_incomes_and_expenses">Summary of incomes and expenses</string>
     <string name="wrong_pin">Wrong PIN!</string>
+    <string name="exchange_rates">Exchange Rates</string>
+    <string name="see_exchange_rates">See exchange rates</string>
+    <string name="network_request_error">Network request error occurred, check LOG</string>
+    <string name="number_ft">%1$d Ft</string>
+    <string name="number_decimal_ft">%1$.2f Ft</string>
 </resources>

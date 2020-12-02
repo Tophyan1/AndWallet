@@ -20,6 +20,7 @@ class TransactionAdapter(private val listener: TransactionClickListener) :
     interface TransactionClickListener {
         fun onItemRemoved(position: Int)
         fun showEditDialog(item: Transaction, position: Int)
+        fun getFtStringFromNumber(number: Int): String
     }
 
     inner class TransactionViewHolder(viewItem: View) : RecyclerView.ViewHolder(viewItem) {
@@ -42,7 +43,7 @@ class TransactionAdapter(private val listener: TransactionClickListener) :
         val item = items[position]
         holder.nameTextView.text = item.name
         holder.dateTextView.text = getDateString(item.date)
-        holder.amountTextView.text = "${item.amount} Ft"
+        holder.amountTextView.text = listener.getFtStringFromNumber(item.amount)
         val image: Int
         val colour: Int
         if (item.amount < 0) {

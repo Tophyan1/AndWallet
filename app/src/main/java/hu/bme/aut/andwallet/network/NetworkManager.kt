@@ -1,16 +1,15 @@
 package hu.bme.aut.andwallet.network
 
 import android.os.Handler
-import hu.bme.aut.andwallet.data.ExchangeRates
+import hu.bme.aut.andwallet.data.MoneyResult
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.concurrent.thread
 
 object NetworkManager {
-    private const val SERVICE_URL = "https://www.alphavantage.co"
-    private const val FUNCTION = "CURRENCY_EXCHANGE_RATE"
-    private const val API_KEY = "800S7H8QCQRK9NJB"
+    private const val SERVICE_URL = "https://api.exchangeratesapi.io"
 
     private val exchangeApi: ExchangeApi
 
@@ -29,7 +28,7 @@ object NetworkManager {
         onError: (Throwable) -> Unit
     ) {
         val handler = Handler()
-        Thread {
+        thread {
             try {
                 val response = call.execute().body()!!
                 handler.post { onSuccess(response) }
@@ -38,15 +37,15 @@ object NetworkManager {
                 e.printStackTrace()
                 handler.post { onError(e) }
             }
-        }.start()
+        }
     }
 
     fun getRates(
-        currency: String?,
-        onSuccess: (ExchangeRates) -> Unit,
+        currency: String,
+        onSuccess: (MoneyResult) -> Unit,
         onError: (Throwable) -> Unit
     ) {
-        val getRateRequest = exchangeApi.getRates(FUNCTION, currency, "HUF", API_KEY)
+        val getRateRequest = exchangeApi.getRates(currency)
         runCallOnBackgroundThread(getRateRequest, onSuccess, onError)
     }
 

@@ -70,7 +70,11 @@ class MainActivity : AppCompatActivity(),
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_saving ->  {
+            R.id.action_see_exchange_rates -> {
+                startActivity(Intent(this, ExchangeRatesActivity::class.java))
+                true
+            }
+            R.id.action_saving -> {
                 startActivity(Intent(this, PiggyBankActivity::class.java))
                 true
             }
@@ -131,11 +135,13 @@ class MainActivity : AppCompatActivity(),
         editIndex = position
         val editDialog = TransactionDialogFragment()
 
-        val  bundle = Bundle()
+        val bundle = Bundle()
         bundle.putSerializable(KEY_EDIT, item)
         editDialog.arguments = bundle
         editDialog.show(supportFragmentManager, TransactionDialogFragment.EDIT_TAG)
     }
+
+    override fun getFtStringFromNumber(number: Int) = getString(R.string.number_ft)
 
     override fun onTransactionCreated(newItem: Transaction) {
         thread {
