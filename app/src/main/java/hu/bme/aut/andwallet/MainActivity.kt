@@ -141,7 +141,7 @@ class MainActivity : AppCompatActivity(),
         editDialog.show(supportFragmentManager, TransactionDialogFragment.EDIT_TAG)
     }
 
-    override fun getFtStringFromNumber(number: Int) = getString(R.string.number_ft)
+    override fun getFtStringFromNumber(number: Int) = getString(R.string.number_ft, number)
 
     override fun onTransactionCreated(newItem: Transaction) {
         thread {
