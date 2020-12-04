@@ -2,6 +2,7 @@ package hu.bme.aut.andwallet
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.TypedValue
 import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -47,8 +48,13 @@ class MonthlySummaryActivity : AppCompatActivity() {
         chartSummary.data = data
         chartSummary.isRotationEnabled = false
         chartSummary.description.text = getString(R.string.summary_of_incomes_and_expenses)
+        chartSummary.description.textColor = getColor(R.color.light_grey)
         chartSummary.setEntryLabelColor(Color.BLACK)
         chartSummary.setEntryLabelTextSize(16f)
+        val holeColor = TypedValue()
+        theme.resolveAttribute(R.attr.backgroundColor, holeColor, true)
+        chartSummary.setHoleColor(holeColor.data)
+
         chartSummary.invalidate()
     }
 }
